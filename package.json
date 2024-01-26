@@ -1,15 +1,26 @@
 {
-  "name": "inscplusgraph",
-  "version": "1.0.0",
-  "description": "A subgraph for insc plus",
-  "main": "index.js",
+  "name": "inscplus",
+  "license": "UNLICENSED",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ shalomxl/inscplus",
+    "create-local": "graph create --node http://localhost:8020/ shalomxl/inscplus",
+    "remove-local": "graph remove --node http://localhost:8020/ shalomxl/inscplus",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 shalomxl/inscplus",
+    "test": "graph test"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@graphprotocol/graph-cli": "^0.67.2"
+    "@graphprotocol/graph-cli": "0.67.2",
+    "@graphprotocol/graph-ts": "0.32.0"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0",
+    "matchstick-as": "0.5.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

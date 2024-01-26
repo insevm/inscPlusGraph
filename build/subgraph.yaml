@@ -1,0 +1,38 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: INSCPlus
+    network: mainnet
+    source:
+      address: "0x0B8Be07F6E2a79Acfce49274ebA0fA612E5cB8F9"
+      abi: INSCPlus
+      startBlock: 19023862
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - Inscribe
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: INSCPlus
+          file: INSCPlus/abis/INSCPlus.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: Inscribe(indexed uint256,bytes)
+          handler: handleInscribe
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: INSCPlus/INSCPlus.wasm
